@@ -2,6 +2,8 @@
 
 Bu proje, jQuery ve AJAX kullanarak oluşturulmuş basit bir alışveriş sitesi uygulamasıdır. FakeStore API'den ürünleri çeker ve kullanıcıların ürünleri görüntülemesine, sepete eklemesine ve sepeti yönetmesine olanak tanır.
 
+https://00k4zn.github.io/mini-e-ticaret-uygulamasi/
+
 ## Özellikler
 
 - Ürün listesi görüntüleme
