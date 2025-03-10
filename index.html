@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OutSider | Online Alışveriş</title>
+    
+    <!-- Preload banner image to improve loading speed -->
+    <link rel="preload" href="images/banner2.jpg" as="image" type="image/jpeg">
+    
+    <!-- CSS dosyalarını projeye dahil ediyoruz -->
+    <link rel="stylesheet" href="css/style.css"> <!-- Ana stil dosyamız -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Font Awesome ikonları için -->
+    <!-- Google Fonts'tan Poppins yazı tipini dahil ediyoruz -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Slick carousel (kaydırmalı içerik) için gerekli CSS dosyaları -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
+    <!-- Fancybox (popup/modal pencere) için CSS dosyası -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+</head>
+<body>
+    <!-- Header (Üst Menü) Bölümü - Sitenin üst kısmındaki navigasyon ve logo alanı -->
+    <header class="site-header">
+        <div class="container header-container">
+            <!-- Logo Alanı -->
+            <div class="logo">
+                <a href="index.html">
+                    <h1>Out<span>Sider</span></h1> <!-- Logo metni, "Easy" kısmı CSS ile farklı renklendirilecek -->
+                </a>
+            </div>
+            
+            <!-- Arama Kutusu -->
+            <div class="search-box">
+                <form id="searchForm">
+                    <input type="text" id="searchInput" placeholder="Ürün ara..."> <!-- Kullanıcının arama yapabileceği input alanı -->
+                    <button type="submit" id="searchButton">
+                        <i class="fas fa-search"></i> <!-- Arama ikonu -->
+                    </button>
+                </form>
+            </div>
+            
+            <!-- Ana Navigasyon Menüsü - Büyük ekranlar için -->
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html" class="active">Anasayfa</a></li> <!-- "active" sınıfı şu anda aktif sayfayı belirtir -->
+                    <li><a href="favorites.html">Favorilerim <span class="favorites-count">0</span></a></li> <!-- Favori sayısı JavaScript ile güncellenecek -->
+                    <li><a href="cart.html">Sepetim <span class="cart-count">0</span></a></li> <!-- Sepet sayısı JavaScript ile güncellenecek -->
+                </ul>
+            </nav>
+            
+            <!-- Mobil Menü Butonları - Küçük ekranlar için -->
+            <div class="mobile-buttons">
+                <a href="cart.html" class="mobile-cart-link">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span> <!-- Sepet sayısı JavaScript ile güncellenecek -->
+                </a>
+                <button class="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i> <!-- Hamburger menü ikonu -->
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Banner - Ana sayfanın üst kısmındaki büyük tanıtım görseli -->
+    <section class="hero-banner">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Yaz Sezonu İndirimleri</h2>
+                <p>Tüm yaz ürünlerinde %50'ye varan indirimler</p>
+                <a href="#productList" class="btn btn-primary">Hemen Keşfet</a> <!-- Ürün listesine yönlendiren buton -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Öne Çıkan Ürünler - Kaydırmalı slider olarak gösterilecek seçkin ürünler -->
+    <section class="featured-products section">
+        <div class="container">
+            <h2 class="section-title">Öne Çıkan Ürünler</h2>
+            <div id="featuredProducts" class="product-slider"></div> <!-- JavaScript ile doldurulacak slider alanı -->
+        </div>
+    </section>
+
+    <!-- Ürün Listesi - Tüm ürünlerin listelendiği ana bölüm -->
+    <section class="products section">
+        <div class="container">
+            <h2 class="section-title">Tüm Ürünler</h2>
+            
+            <!-- Kategori Filtreleme Butonları -->
+            <div class="product-filters">
+                <button class="filter-btn active" data-filter="all">Tümü</button>
+                <button class="filter-btn" data-filter="electronics">Elektronik</button>
+                <button class="filter-btn" data-filter="men's clothing">Erkek Giyim</button>
+                <button class="filter-btn" data-filter="women's clothing">Kadın Giyim</button>
+                <button class="filter-btn" data-filter="jewelery">Takı</button>
+            </div>
+            
+            <!-- Ürün Topbar - Ürün sayısı ve sıralama seçenekleri -->
+            <div class="products-topbar">
+                <div class="showing-results">
+                    <span id="productCount">0</span> ürün gösteriliyor
+                </div>
+            </div>
+            
+            <!-- Ürün Listesi -->
+            <div id="productList" class="product-grid"></div>
+            
+            <!-- Sayfalama -->
+            <div class="pagination">
+            </div>
+        </div>
+    </section>
+
+    <!-- Ürün Detay Modalı - Ürün detaylarının gösterileceği popup pencere -->
+    <div id="productDetailModal" class="product-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span> <!-- Kapatma butonu -->
+            <div class="product-modal-content">
+                <!-- Ürün Görseli -->
+                <div class="modal-left">
+                    <img id="modalProductImage" src="" alt="Ürün Görseli">
+                </div>
+                <!-- Ürün Bilgileri -->
+                <div class="modal-right">
+                    <h2 id="modalProductTitle"></h2> <!-- JavaScript ile doldurulacak ürün başlığı -->
+                    <div class="modal-price" id="modalProductPrice"></div> <!-- JavaScript ile doldurulacak fiyat -->
+                    <div class="rating">
+                        <!-- Statik yıldız değerlendirmesi (gerçek değerlendirme verileri yoksa) -->
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>(4.5/5)</span>
+                    </div>
+                    <p id="modalProductDescription"></p> <!-- JavaScript ile doldurulacak açıklama -->
+                    <div class="modal-buttons">
+                        <button class="btn btn-primary add-to-cart-btn">Sepete Ekle</button>
+                        <button class="btn btn-secondary add-to-favorites-btn">Favorilere Ekle</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ürün Kartı Şablonu - JavaScript'te kullanılacak hazır HTML yapısı -->
+    <template id="product-card-template">
+        <div class="product-card">
+            <div class="product-image">
+                <img src="" alt="">
+                <div class="product-tags">
+                    <span class="product-tag new">Yeni</span>
+                </div>
+            </div>
+            <div class="product-info">
+                <h3 class="product-title"></h3>
+                <div class="product-price"></div>
+                <div class="product-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <div class="product-buttons">
+                    <button class="detail-btn">Detayları Gör</button>
+                    <button class="add-to-cart-btn">Sepete Ekle</button>
+                    <button class="add-to-favorites-btn"><i class="far fa-heart"></i></button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Footer (Alt Bilgi) Bölümü -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="social-icons">
+                    <a href="https://github.com/00k4zN" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/ozkanyavuz00" target="_blank"><i class="fab fa-linkedin"></i></a>
+                </div>
+                <div class="copyright">
+                    <p>© 2025 Özkan Yavuz. Tüm hakları saklıdır.</p>
+                    <p>Insider Testinium Tech Hub JavaScript Developer Bootcamp Projesidir.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Dosyaları - Sayfanın en altına koyarak sayfa yükleme performansını artırıyoruz -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery kütüphanesi - JavaScript'i kolaylaştırır -->
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script> <!-- Slick carousel için script -->
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script> <!-- Fancybox için script -->
+    <script src="js/app.js"></script> <!-- Ana JavaScript dosyamız -->
+</body>
+</html>

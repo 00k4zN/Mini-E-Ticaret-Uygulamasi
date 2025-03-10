@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8"> <!-- Türkçe karakterleri desteklemek için UTF-8 kodlaması -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsive tasarım için viewport tanımı -->
+    <title>Favorilerim | OutSider</title> <!-- Tarayıcı sekmesinde görünen başlık -->
+    
+    <!-- ANA STİL DOSYASI -->
+    <link rel="stylesheet" href="css/style.css"> <!-- Tüm sitenin genel görünümünü düzenleyen CSS dosyası -->
+    
+    <!-- İKON KÜTÜPHANESİ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Kalp, sepet vb. ikonlar için -->
+    
+    <!-- YAZI TİPİ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"> <!-- Poppins yazı tipi - modern ve okunaklı -->
+</head>
+<body>
+    <!-- HEADER (ÜST MENÜ) BÖLÜMÜ -->
+    <!-- Not: HTML yapısını önce oluşturup, sonra CSS ile stillendiriniz, en son JavaScript ile işlevsellik ekleyiniz -->
+    <header class="site-header">
+        <div class="container header-container">
+            <!-- Site Logosu - Ana sayfaya yönlendirir -->
+            <div class="logo">
+                <a href="index.html">
+                    <h1>Out<span>Sider</span></h1> <!-- "Easy" kelimesi CSS'de özel olarak renklendirilebilir -->
+                </a>
+            </div>
+            
+            <!-- Arama Kutusu - Farklı sayfalarda da arama yapabilmek için -->
+            <div class="search-box">
+                <form id="searchForm">
+                    <input type="text" id="searchInput" placeholder="Ürün ara...">
+                    <button type="submit" id="searchButton">
+                        <i class="fas fa-search"></i> <!-- Arama ikonu -->
+                    </button>
+                </form>
+            </div>
+            
+            <!-- Ana Menü - Farklı sayfalara geçiş -->
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Anasayfa</a></li>
+                    <li><a href="favorites.html" class="active">Favorilerim <span class="favorites-count">0</span></a></li> <!-- Aktif sayfa ve JS ile güncellenecek favori sayısı -->
+                    <li><a href="cart.html">Sepetim <span class="cart-count">0</span></a></li> <!-- JS ile güncellenecek sepet sayısı -->
+                </ul>
+            </nav>
+            
+            <!-- Mobil Görünüm İçin Ek Butonlar - Responsive tasarım için -->
+            <div class="mobile-buttons">
+                <a href="cart.html" class="mobile-cart-link">
+                    <i class="fas fa-shopping-cart"></i> <!-- Sepet ikonu -->
+                    <span class="cart-count">0</span> <!-- JS ile sepet sayısı güncellenecek -->
+                </a>
+                <button class="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i> <!-- Hamburger menü ikonu -->
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- FAVORİ ÜRÜNLERİN LİSTELENDİĞİ BÖLÜM -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Favori Ürünlerim</h2> <!-- Sayfanın ana başlığı -->
+            
+            <div class="favorites-page">
+                <!-- Favorilerin gösterileceği alan - JS ile favorites dizisinden doldurulacak -->
+                <div id="favoritesList">
+                    <!-- Yükleniyor göstergesi - favoriler yüklenirken gösterilir -->
+                    <div class="loading">Favorileriniz yükleniyor...</div>
+                    
+                    <!-- JavaScript ile favoriler buraya eklenecek -->
+                    <!-- Her favori ürün için bir kart şu şekilde oluşturulacak:
+                    <div class="favorite-item">
+                        <div class="favorite-item-image">
+                            <img src="ürün-resmi.jpg" alt="Ürün Adı">
+                        </div>
+                        <div class="favorite-item-info">
+                            <div class="favorite-item-title">Ürün Adı</div>
+                            <div class="favorite-item-price">Fiyat</div>
+                            <div class="favorite-item-buttons">
+                                <button class="add-to-cart-btn" data-id="urun-id">Sepete Ekle</button>
+                                <button class="remove-favorite-btn" data-id="urun-id">Sil</button>
+                            </div>
+                        </div>
+                    </div>
+                    -->
+                    
+                    <!-- Eğer favori yoksa bu mesaj JS tarafından gösterilecek -->
+                    <!-- <div class="empty-favorites-message">Favorileriniz boş.</div> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER (ALT BİLGİ) BÖLÜMÜ -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="social-icons">
+                    <a href="https://github.com/00k4zN" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/ozkanyavuz00" target="_blank"><i class="fab fa-linkedin"></i></a>
+                </div>
+                <div class="copyright">
+                    <p>© 2025 Özkan Yavuz. Tüm hakları saklıdır.</p>
+                    <p>Insider Testinium Tech Hub JavaScript Developer Bootcamp Projesidir.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Dosyaları -->
+    <!-- jQuery kütüphanesi - DOM manipülasyonu ve AJAX isteklerini kolaylaştırır -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- Ana JavaScript dosyası - favoriler için gerekli tüm fonksiyonları içerir -->
+    <script src="js/app.js"></script>
+    
+    <!-- Not: HTML ve CSS yapısını önce tamamlayıp, sonra JavaScript'e geçmelisiniz. -->
+    <!-- app.js'deki ilgili fonksiyonlar:
+         - renderFavorites() - Favori ürünleri sayfada görüntüler
+         - toggleFavorite() - Ürünü favorilere ekler veya çıkarır
+         - addToCart() - Favorideki ürünü sepete ekler
+    -->
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8"> <!-- Türkçe karakter desteği için UTF-8 karakter kodlaması -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Mobil cihazlar için responsive tasarım ayarı -->
+    <title>Sepetim | OutSider</title> <!-- Sayfa başlığı - tarayıcı sekmesinde görünür -->
+    
+    <!-- STIL DOSYALARI -->
+    <!-- Ana CSS dosyası - tüm sayfaların görünümünü düzenler -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Font Awesome ikon kütüphanesi - sepet, favori gibi ikonlar için gerekli -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- YAZI TİPİ -->
+    <!-- Google Fonts'tan Poppins yazı tipi - modern ve okunaklı bir font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- ÜST MENÜ (HEADER) BÖLÜMÜ -->
+    <!-- Not: Header bölümünü oluştururken öncelikle bu yapıyı HTML olarak kodlamalısınız -->
+    <header class="site-header">
+        <div class="container header-container">
+            <!-- Logo - Sitenin ana sayfasına yönlendirir -->
+            <div class="logo">
+                <a href="index.html">
+                    <h1>Out<span>Sider</span></h1> <!-- "Easy" bölümü CSS'de farklı renklendirilmiştir -->
+                </a>
+            </div>
+            
+            <!-- Arama Kutusu - Ürün araması yapabileceğimiz alan -->
+            <div class="search-box">
+                <form id="searchForm">
+                    <input type="text" id="searchInput" placeholder="Ürün ara...">
+                    <button type="submit" id="searchButton">
+                        <i class="fas fa-search"></i> <!-- Arama butonu ikonu -->
+                    </button>
+                </form>
+            </div>
+            
+            <!-- Ana Navigasyon Menüsü - Sitenin ana bölümleri arasında geçiş -->
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Anasayfa</a></li>
+                    <li><a href="favorites.html">Favorilerim <span class="favorites-count">0</span></a></li> <!-- JavaScript ile favori sayısı güncellenecek -->
+                    <li><a href="cart.html" class="active">Sepetim <span class="cart-count">0</span></a></li> <!-- Aktif sayfa, JavaScript ile sepet sayısı güncellenecek -->
+                </ul>
+            </nav>
+            
+            <!-- Mobil Menü Butonları - Küçük ekranlar için özel tasarım -->
+            <div class="mobile-buttons">
+                <a href="cart.html" class="mobile-cart-link">
+                    <i class="fas fa-shopping-cart"></i> <!-- Sepet ikonu -->
+                    <span class="cart-count">0</span> <!-- JavaScript ile güncellenecek sayaç -->
+                </a>
+                <button class="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i> <!-- "Hamburger" menü ikonu -->
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- SEPET İÇERİK BÖLÜMÜ -->
+    <!-- HTML yapısını tamamen oluşturduktan sonra JavaScript ile içeriği dolduracağız -->
+    <section class="section">
+        <div class="container">
+            <div class="cart-page">
+                <!-- Sepet Başlığı ve Temizle Butonu -->
+                <div class="cart-header">
+                    <h1>Alışveriş Sepetim</h1>
+                    <button id="clearCart" class="btn btn-secondary">Sepeti Temizle</button> <!-- JavaScript ile clearCart() fonksiyonuna bağlanacak -->
+                </div>
+                
+                <!-- Sepet Ürünleri - JavaScript renderCart() fonksiyonu ile doldurulacak -->
+                <div id="cartItems">
+                    <!-- Başlangıçta yükleniyor mesajı gösterilir, veriler gelince bu içerik değişecek -->
+                    <div class="loading">Sepetiniz yükleniyor...</div>
+                    <!-- Ürünler bu bölüme JavaScript ile eklenecek -->
+                    <!-- Her ürün için resim, başlık, fiyat, miktar ve kaldırma butonu içeren yapı oluşturulacak -->
+                </div>
+                
+                <!-- Sepet Özeti - Fiyat bilgileri -->
+                <!-- Bu kısım JavaScript ile değerler hesaplanacak şekilde tasarlanmıştır -->
+                <div class="cart-summary">
+                    <div class="summary-row">
+                        <span>Ara Toplam:</span>
+                        <span><span id="subtotal">0.00</span> TL</span> <!-- Ürünlerin toplam tutarı -->
+                    </div>
+                    <div class="summary-row">
+                        <span>Kargo:</span>
+                        <span><span id="shipping">29.90</span> TL</span> <!-- Sabit kargo ücreti -->
+                    </div>
+                    <div class="summary-row">
+                        <span>İndirim:</span>
+                        <span>-<span id="discount">0.00</span> TL</span> <!-- Varsa indirim tutarı -->
+                    </div>
+                    <div class="summary-row total">
+                        <span>Toplam:</span>
+                        <span><span id="cartTotal">0.00</span> TL</span> <!-- JavaScript renderCart() fonksiyonu içinde hesaplanacak genel toplam -->
+                    </div>
+                </div>
+                
+                <!-- Sepet İşlem Butonları - Alışverişe devam et veya ödeme yap seçenekleri -->
+                <div class="cart-actions">
+                    <a href="index.html" class="btn btn-secondary">Alışverişe Devam Et</a> <!-- Ana sayfaya dönüş linki -->
+                    <button id="checkoutBtn" class="btn btn-primary">Ödeme Yap</button> <!-- JavaScript ile ödeme fonksiyonuna bağlanacak -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER (ALT BİLGİ) BÖLÜMÜ -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="social-icons">
+                    <a href="https://github.com/00k4zN" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/ozkanyavuz00" target="_blank"><i class="fab fa-linkedin"></i></a>
+                </div>
+                <div class="copyright">
+                    <p>© 2025 Özkan Yavuz. Tüm hakları saklıdır.</p>
+                    <p>Insider Testinium Tech Hub JavaScript Developer Bootcamp Projesidir.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT DOSYALARI -->
+    <!-- jQuery - JavaScript işlemlerini kolaylaştıran kütüphane -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Ana JavaScript dosyası - sepet işlemleri burada gerçekleştirilecek -->
+    <script src="js/app.js"></script>
+    <!-- Not: Önce HTML ve CSS dosyalarını tamamen kodlayıp sonra JavaScript ile sepet işlemlerini yapmalısınız -->
+    <!-- app.js'de sepet için: renderCart(), addToCart(), removeFromCart(), clearCart() gibi fonksiyonlar bulunmalı -->
+</body>
+</html>
